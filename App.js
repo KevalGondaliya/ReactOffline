@@ -7,7 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeScreen from './src/screens/HomeScreen';
-import RegisterUser from './src/screens/RegisterUser';
+import AddProduct from './src/screens/AddProduct';
 import UpdateUser from './src/screens/UpdateUser';
 import ViewUser from './src/screens/ViewUser';
 import ViewAllUser from './src/screens/ViewAllUser';
@@ -25,7 +25,7 @@ const App = () => {
           options={{
             title: 'Home', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: '#3cb565', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -39,7 +39,7 @@ const App = () => {
           options={{
             title: 'View User', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: '#3cb565', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -53,7 +53,7 @@ const App = () => {
           options={{
             title: 'View Users', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: '#3cb565', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -67,7 +67,7 @@ const App = () => {
           options={{
             title: 'Update User', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: '#3cb565', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -76,12 +76,12 @@ const App = () => {
           }}
         />
         <Stack.Screen
-          name="Register"
-          component={RegisterUser}
+          name="AddProduct"
+          component={AddProduct}
           options={{
-            title: 'Register User', //Set Header Title
+            title: 'Add Product', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: '#3cb565', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -95,7 +95,7 @@ const App = () => {
           options={{
             title: 'Delete User', //Set Header Title
             headerStyle: {
-              backgroundColor: '#f4511e', //Set Header color
+              backgroundColor: '#3cb565', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {

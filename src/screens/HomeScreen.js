@@ -31,8 +31,8 @@ const HomeScreen = ({navigation}) => {
       <View style={{flex: 1, backgroundColor: 'white'}}>
         <View style={{flex: 1}}>
           <Mybutton
-            title="Register"
-            customClick={() => navigation.navigate('Register')}
+            title="Add Product"
+            customClick={() => navigation.navigate('AddProduct')}
           />
           <Mybutton
             title="Update"

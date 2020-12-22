@@ -12,12 +12,13 @@ const Mybutton = (props) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: '#f05555',
+    backgroundColor: '#3cb565',
     color: '#ffffff',
-    padding: 10,
+    padding: 15,
     marginTop: 16,
     marginLeft: 35,
     marginRight: 35,
+    borderRadius: 25,
   },
   text: {
     color: '#ffffff',
