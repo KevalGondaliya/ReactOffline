@@ -10,6 +10,7 @@ import {
 import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import {openDatabase} from 'react-native-sqlite-storage';
+import Toast from 'react-native-simple-toast';
 
 var db = openDatabase({name: 'UserDatabase.db'});
 
@@ -32,25 +33,41 @@ const AddProduct = ({navigation}) => {
     );
 
     if (!productName) {
-      alert('Please enter product name');
+      Toast.showWithGravity('Please enter product name', Toast.LONG, Toast.TOP);
       return;
     } else if (!smallDes) {
-      alert('Please enter small description');
+      Toast.showWithGravity(
+        'Please enter small description',
+        Toast.LONG,
+        Toast.TOP,
+      );
       return;
     } else if (!originalPrice) {
-      alert('Please enter original price');
+      Toast.showWithGravity(
+        'Please enter original price',
+        Toast.LONG,
+        Toast.TOP,
+      );
       return;
     } else if (!discountPrice) {
-      alert('Please enter discount Price');
+      Toast.showWithGravity(
+        'Please enter discount Price',
+        Toast.LONG,
+        Toast.TOP,
+      );
       return;
     } else if (!productImage) {
-      alert('Please select prodcut image');
+      Toast.showWithGravity(
+        'Please select prodcut image',
+        Toast.LONG,
+        Toast.TOP,
+      );
       return;
     } else if (!category) {
-      alert('Please select category');
+      Toast.showWithGravity('Please select category', Toast.LONG, Toast.TOP);
       return;
     } else {
-      alert('Please fill all field');
+      Toast.showWithGravity('Please fill all field', Toast.LONG, Toast.TOP);
     }
 
     db.transaction(function (tx) {

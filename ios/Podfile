@@ -8,6 +8,8 @@ target 'reactOffline' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-simple-toast', :path => '../node_modules/react-native-simple-toast'
+
   target 'reactOfflineTests' do
     inherit! :complete
     # Pods for testing
