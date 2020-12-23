@@ -8,7 +8,7 @@ import {
   Text,
 } from 'react-native';
 import Mytextinput from './../components/Mytextinput';
-import Mybutton from '../components/Mybutton';
+import Mybutton from './../components/Mybutton';
 import {openDatabase} from 'react-native-sqlite-storage';
 
 var db = openDatabase({name: 'UserDatabase.db'});
@@ -29,7 +29,7 @@ const UpdateUser = ({navigation}) => {
     console.log(inputUserId);
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_user where user_id = ?',
+        'SELECT * FROM product_table where product_id = ?',
         [inputUserId],
         (tx, results) => {
           var len = results.rows.length;
@@ -66,7 +66,7 @@ const UpdateUser = ({navigation}) => {
 
     db.transaction((tx) => {
       tx.executeSql(
-        'UPDATE table_user set user_name=?, user_contact=? , user_address=? where user_id=?',
+        'UPDATE product_table set user_name=?, user_contact=? , user_address=? where product_id=?',
         [userName, userContact, userAddress, inputUserId],
         (tx, results) => {
           console.log('Results', results.rowsAffected);

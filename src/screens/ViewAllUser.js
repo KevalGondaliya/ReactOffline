@@ -9,7 +9,7 @@ const ViewAllUser = () => {
 
   useEffect(() => {
     db.transaction((tx) => {
-      tx.executeSql('SELECT * FROM table_user', [], (tx, results) => {
+      tx.executeSql('SELECT * FROM product_table', [], (tx, results) => {
         var temp = [];
         for (let i = 0; i < results.rows.length; ++i)
           temp.push(results.rows.item(i));
@@ -32,11 +32,16 @@ const ViewAllUser = () => {
 
   let listItemView = (item) => {
     return (
-      <View key={item.user_id} style={{backgroundColor: 'white', padding: 20}}>
-        <Text>Id: {item.user_id}</Text>
-        <Text>Name: {item.user_name}</Text>
-        <Text>Contact: {item.user_contact}</Text>
-        <Text>Address: {item.user_address}</Text>
+      <View
+        key={item.product_id}
+        style={{backgroundColor: 'white', padding: 20}}>
+        <Text>Id: {item.product_id}</Text>
+        <Text>Name: {item.product_name}</Text>
+        <Text>Contact: {item.small_des}</Text>
+        <Text>Address: {item.original_price}</Text>
+        <Text>Address: {item.discount_price}</Text>
+        <Text>Address: {item.product_image}</Text>
+        <Text>Address: {item.category}</Text>
       </View>
     );
   };

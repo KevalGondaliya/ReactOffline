@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Text, View, SafeAreaView} from 'react-native';
 import Mytextinput from './../components/Mytextinput';
-import Mybutton from '../components/Mybutton';
+import Mybutton from './../components/Mybutton';
 import {openDatabase} from 'react-native-sqlite-storage';
 
 var db = openDatabase({name: 'UserDatabase.db'});
@@ -15,7 +15,7 @@ const ViewUser = () => {
     setUserData({});
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_user where user_id = ?',
+        'SELECT * FROM product_table where product_id = ?',
         [inputUserId],
         (tx, results) => {
           var len = results.rows.length;
@@ -46,7 +46,7 @@ const ViewUser = () => {
               marginRight: 35,
               marginTop: 10,
             }}>
-            <Text>User Id: {userData.user_id}</Text>
+            <Text>User Id: {userData.product_id}</Text>
             <Text>User Name: {userData.user_name}</Text>
             <Text>User Contact: {userData.user_contact}</Text>
             <Text>User Address: {userData.user_address}</Text>

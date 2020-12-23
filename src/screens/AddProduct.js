@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   Text,
 } from 'react-native';
-import Mytextinput from './../components/Mytextinput';
+import Mytextinput from '../components/Mytextinput';
 import Mybutton from '../components/Mybutton';
 import {openDatabase} from 'react-native-sqlite-storage';
 
@@ -18,8 +18,7 @@ const AddProduct = ({navigation}) => {
   let [smallDes, setSmallDes] = useState('');
   let [originalPrice, setOriginalPrice] = useState('');
   let [discountPrice, setDiscountPrice] = useState('');
-  let [productImg, setProductImg] = useState('');
-  let [productImgPreview, setProductImgPreview] = useState('');
+  let [productImage, setProductImage] = useState('');
   let [category, setCategory] = useState('');
 
   let addProduct = () => {
@@ -28,50 +27,41 @@ const AddProduct = ({navigation}) => {
       smallDes,
       originalPrice,
       discountPrice,
-      productImg,
-      productImgPreview,
+      productImage,
       category,
     );
 
     if (!productName) {
-      alert('Please fill name');
+      alert('Please enter product name');
       return;
-    }
-    if (!smallDes) {
-      alert('Please fill Contact Number');
+    } else if (!smallDes) {
+      alert('Please enter small description');
       return;
-    }
-    if (!originalPrice) {
-      alert('Please fill Contact Number');
+    } else if (!originalPrice) {
+      alert('Please enter original price');
       return;
-    }
-    if (!discountPrice) {
-      alert('Please fill Contact Number');
+    } else if (!discountPrice) {
+      alert('Please enter discount Price');
       return;
-    }
-    if (!productImg) {
-      alert('Please fill Contact Number');
+    } else if (!productImage) {
+      alert('Please select prodcut image');
       return;
-    }
-    if (!productImgPreview) {
-      alert('Please fill Contact Number');
+    } else if (!category) {
+      alert('Please select category');
       return;
-    }
-    if (!category) {
-      alert('Please fill Contact Number');
-      return;
+    } else {
+      alert('Please fill all field');
     }
 
     db.transaction(function (tx) {
       tx.executeSql(
-        'INSERT INTO table_user (productName,smallDes,originalPrice,discountPrice,productImg,productImgPreview,category) VALUES (?,?,?,?,?,?,?)',
+        'INSERT INTO product_table (product_name,small_des,original_price,discount_price,product_image,category) VALUES (?,?,?,?,?,?)',
         [
           productName,
           smallDes,
           originalPrice,
           discountPrice,
-          productImg,
-          productImgPreview,
+          productImage,
           category,
         ],
         (tx, results) => {
@@ -108,9 +98,10 @@ const AddProduct = ({navigation}) => {
                 style={{padding: 10}}
               />
               <Mytextinput
-                placeholder="Enter Small Disc."
+                placeholder="Enter Small Description"
                 onChangeText={(smallDes) => setSmallDes(smallDes)}
                 maxLength={10}
+                keyboardType="numeric"
                 style={{padding: 10}}
               />
               <Mytextinput
@@ -118,35 +109,28 @@ const AddProduct = ({navigation}) => {
                 onChangeText={(originalPrice) =>
                   setOriginalPrice(originalPrice)
                 }
-                maxLength={10}
-                style={{padding: 10}}
+                multiline={true}
+                style={{textAlignVertical: 'top', padding: 10}}
               />
+
               <Mytextinput
                 placeholder="Enter Discount Price"
                 onChangeText={(discountPrice) =>
                   setDiscountPrice(discountPrice)
                 }
-                maxLength={10}
+                multiline={true}
                 style={{padding: 10}}
               />
               <Mytextinput
-                placeholder="Enter Product Image"
-                onChangeText={(productImg) => setProductImg(productImg)}
-                maxLength={10}
+                placeholder="Select Product Image"
+                onChangeText={(productImage) => setProductImage(productImage)}
+                multiline={true}
                 style={{padding: 10}}
               />
               <Mytextinput
-                placeholder="Enter Contact No"
-                onChangeText={(productImgPreview) =>
-                  setProductImgPreview(productImgPreview)
-                }
-                maxLength={10}
-                style={{padding: 10}}
-              />
-              <Mytextinput
-                placeholder="Enter Contact No"
+                placeholder="Select Category"
                 onChangeText={(category) => setCategory(category)}
-                maxLength={10}
+                multiline={true}
                 style={{padding: 10}}
               />
               <Mybutton title="Submit" customClick={addProduct} />

@@ -12,6 +12,7 @@ import UpdateUser from './src/screens/UpdateUser';
 import ViewUser from './src/screens/ViewUser';
 import ViewAllUser from './src/screens/ViewAllUser';
 import DeleteUser from './src/screens/DeleteUser';
+import {colors} from './src/config/constant';
 
 const Stack = createStackNavigator();
 
@@ -25,7 +26,7 @@ const App = () => {
           options={{
             title: 'Home', //Set Header Title
             headerStyle: {
-              backgroundColor: '#3cb565', //Set Header color
+              backgroundColor: '#f12761', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -39,7 +40,7 @@ const App = () => {
           options={{
             title: 'View User', //Set Header Title
             headerStyle: {
-              backgroundColor: '#3cb565', //Set Header color
+              backgroundColor: '#f12761', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -53,7 +54,7 @@ const App = () => {
           options={{
             title: 'View Users', //Set Header Title
             headerStyle: {
-              backgroundColor: '#3cb565', //Set Header color
+              backgroundColor: '#f12761', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -67,7 +68,7 @@ const App = () => {
           options={{
             title: 'Update User', //Set Header Title
             headerStyle: {
-              backgroundColor: '#3cb565', //Set Header color
+              backgroundColor: '#f12761', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -81,7 +82,7 @@ const App = () => {
           options={{
             title: 'Add Product', //Set Header Title
             headerStyle: {
-              backgroundColor: '#3cb565', //Set Header color
+              backgroundColor: '#f12761', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {
@@ -95,7 +96,7 @@ const App = () => {
           options={{
             title: 'Delete User', //Set Header Title
             headerStyle: {
-              backgroundColor: '#3cb565', //Set Header color
+              backgroundColor: '#f12761', //Set Header color
             },
             headerTintColor: '#fff', //Set Header text color
             headerTitleStyle: {

@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {colors} from './../config/constant';
 
 const Mybutton = (props) => {
   return (
@@ -12,7 +13,7 @@ const Mybutton = (props) => {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: '#3cb565',
+    backgroundColor: colors.primary,
     color: '#ffffff',
     padding: 15,
     marginTop: 16,
