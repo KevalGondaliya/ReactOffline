@@ -8,12 +8,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeScreen from './src/screens/HomeScreen';
 import AddProduct from './src/screens/AddProduct';
-import UpdateUser from './src/screens/UpdateUser';
-import ViewUser from './src/screens/ViewUser';
-import ViewAllUser from './src/screens/ViewAllUser';
-import DeleteUser from './src/screens/DeleteUser';
 import Cart from './src/screens/Cart';
-import {colors} from './src/config/constant';
 
 const Stack = createStackNavigator();
 
@@ -25,55 +20,13 @@ const App = () => {
           name="HomeScreen"
           component={HomeScreen}
           options={{
-            title: 'Home', //Set Header Title
+            title: 'Home',
             headerStyle: {
-              backgroundColor: '#f12761', //Set Header color
+              backgroundColor: '#f12761',
             },
-            headerTintColor: '#fff', //Set Header text color
+            headerTintColor: '#fff',
             headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="View"
-          component={ViewUser}
-          options={{
-            title: 'View User', //Set Header Title
-            headerStyle: {
-              backgroundColor: '#f12761', //Set Header color
-            },
-            headerTintColor: '#fff', //Set Header text color
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="ViewAll"
-          component={ViewAllUser}
-          options={{
-            title: 'View Users', //Set Header Title
-            headerStyle: {
-              backgroundColor: '#f12761', //Set Header color
-            },
-            headerTintColor: '#fff', //Set Header text color
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Update"
-          component={UpdateUser}
-          options={{
-            title: 'Update User', //Set Header Title
-            headerStyle: {
-              backgroundColor: '#f12761', //Set Header color
-            },
-            headerTintColor: '#fff', //Set Header text color
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
+              fontWeight: 'bold',
             },
           }}
         />
@@ -81,27 +34,13 @@ const App = () => {
           name="AddProduct"
           component={AddProduct}
           options={{
-            title: 'Add Product', //Set Header Title
+            title: 'Add Product',
             headerStyle: {
-              backgroundColor: '#f12761', //Set Header color
+              backgroundColor: '#f12761',
             },
-            headerTintColor: '#fff', //Set Header text color
+            headerTintColor: '#fff',
             headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Delete"
-          component={DeleteUser}
-          options={{
-            title: 'Delete User', //Set Header Title
-            headerStyle: {
-              backgroundColor: '#f12761', //Set Header color
-            },
-            headerTintColor: '#fff', //Set Header text color
-            headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
+              fontWeight: 'bold',
             },
           }}
         />
@@ -109,13 +48,13 @@ const App = () => {
           name="Cart"
           component={Cart}
           options={{
-            title: 'Cart', //Set Header Title
+            title: 'Cart',
             headerStyle: {
-              backgroundColor: '#f12761', //Set Header color
+              backgroundColor: '#f12761',
             },
-            headerTintColor: '#fff', //Set Header text color
+            headerTintColor: '#fff',
             headerTitleStyle: {
-              fontWeight: 'bold', //Set Header text style
+              fontWeight: 'bold',
             },
           }}
         />

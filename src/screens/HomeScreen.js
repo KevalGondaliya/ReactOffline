@@ -7,9 +7,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Alert,
 } from 'react-native';
 import NumericInput from 'react-native-numeric-input';
 import {FAB} from 'react-native-paper';
+import Toast from 'react-native-simple-toast';
 
 import Mybutton from './../components/Mybutton';
 import Mytext from './../components/Mytext';
@@ -19,27 +21,43 @@ import {colors} from './../config/constant';
 var db = openDatabase({name: 'UserDatabase.db'});
 
 const HomeScreen = ({navigation}) => {
-  // useEffect(() => {
-  //   db.transaction(function (txn) {
-  //     txn.executeSql(
-  //       "SELECT name FROM sqlite_master WHERE type='table' AND name='product_table'",
-  //       [],
-  //       function (tx, res) {
-  //         console.log('item:', res.rows.length);
-  //         if (res.rows.length == 0) {
-  //           txn.executeSql('DROP TABLE IF EXISTS product_table', []);
-  //           txn.executeSql(
-  //             'CREATE TABLE IF NOT EXISTS product_table(product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name VARCHAR(20), small_des INT(10), original_price VARCHAR(50), discount_price VARCHAR(50), product_image VARCHAR(50), category VARCHAR(50))',
-  //             [],
-  //           );
-  //         }
-  //       },
-  //     );
-  //   });
-  // }, []);
-
   let [flatListItems, setFlatListItems] = useState([]);
   let [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    db.transaction(function (txn) {
+      txn.executeSql(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='product_table'",
+        [],
+        function (tx, res) {
+          console.log('item:', res.rows.length);
+          if (res.rows.length == 0) {
+            txn.executeSql('DROP TABLE IF EXISTS product_table', []);
+            txn.executeSql(
+              'CREATE TABLE IF NOT EXISTS product_table(product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name VARCHAR(20), small_des INT(10), original_price VARCHAR(50), discount_price VARCHAR(50), product_image VARCHAR(50), category VARCHAR(50))',
+              [],
+            );
+          }
+        },
+      );
+    });
+    db.transaction(function (txn) {
+      txn.executeSql(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='cart_table'",
+        [],
+        function (tx, res) {
+          console.log('item:', res.rows.length);
+          if (res.rows.length == 0) {
+            txn.executeSql('DROP TABLE IF EXISTS cart_table', []);
+            txn.executeSql(
+              'CREATE TABLE IF NOT EXISTS cart_table(product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name VARCHAR(20), small_des INT(10), original_price VARCHAR(50), discount_price VARCHAR(50), product_image VARCHAR(50), category VARCHAR(50))',
+              [],
+            );
+          }
+        },
+      );
+    });
+  }, []);
 
   useEffect(() => {
     db.transaction((tx) => {
@@ -65,10 +83,41 @@ const HomeScreen = ({navigation}) => {
     );
   };
 
+  const handleAddCart = (item) => {
+    let items = item && item.item;
+    try {
+      console.log('test', items.product_name);
+      db.transaction(function (tx) {
+        tx.executeSql(
+          'INSERT INTO cart_table (product_name,small_des,original_price,discount_price,product_image,category) VALUES (?,?,?,?,?,?)',
+          [
+            items.product_name,
+            items.small_des,
+            items.original_price,
+            items.discount_price,
+            items.product_image,
+            items.category,
+          ],
+          (tx, results) => {
+            console.log('Results', results.rowsAffected);
+            if (results.rowsAffected > 0) {
+              Toast.showWithGravity(
+                'Added data in cart',
+                Toast.LONG,
+                Toast.TOP,
+              );
+            } else alert('Cart Adding Failed');
+          },
+        );
+      });
+    } catch (error) {
+      console.log('error on add cart', error);
+    }
+  };
+
   let listItemView = (item) => {
     return (
-      <View
-        style={{flexDirection: 'row', backgroundColor: 'white', padding: 20}}>
+      <View style={styles.mainView}>
         <View>
           {item && item.productImage !== '' ? (
             <Image
@@ -109,7 +158,7 @@ const HomeScreen = ({navigation}) => {
                 leftButtonBackgroundColor={colors.primary}
               />
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+            <TouchableOpacity onPress={() => handleAddCart({item})}>
               <View style={styles.addCartBtn}>
                 <Text style={styles.addCartText}>Add to cart</Text>
               </View>
@@ -129,6 +178,13 @@ const HomeScreen = ({navigation}) => {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => listItemView(item)}
           />
+          <View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Cart')}>
+              <Text style={styles.text}>View Cart</Text>
+            </TouchableOpacity>
+          </View>
           <FAB
             style={styles.fab}
             icon="plus"
@@ -159,6 +215,11 @@ const HomeScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  mainView: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    padding: 20,
+  },
   productLabel: {
     fontSize: 24,
     fontWeight: '700',
@@ -217,6 +278,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderRadius: 4,
     color: colors.white,
+  },
+  button: {
+    width: 100,
+    alignItems: 'center',
+    backgroundColor: colors.darkBrown,
+    color: 'red',
+    padding: 15,
+    marginVertical: 25,
+    marginHorizontal: 35,
+    borderRadius: 25,
+  },
+  text: {
+    color: '#ffffff',
   },
 });
 

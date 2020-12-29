@@ -178,9 +178,7 @@ const AddProduct = ({navigation}) => {
             />
             <Mytextinput
               placeholder="Enter Original Price"
-              onChangeText={(originalPrice) =>
-                setOriginalPrice(parseInt(originalPrice).toFixed(2))
-              }
+              onChangeText={(originalPrice) => setOriginalPrice(originalPrice)}
               multiline={true}
               keyboardType="numeric"
               style={styles.textInputPadding}
@@ -188,9 +186,7 @@ const AddProduct = ({navigation}) => {
 
             <Mytextinput
               placeholder="Enter Discount Price"
-              onChangeText={(discountPrice) =>
-                setDiscountPrice(parseInt(discountPrice).toFixed(2))
-              }
+              onChangeText={(discountPrice) => setDiscountPrice(discountPrice)}
               multiline={true}
               keyboardType="numeric"
               style={styles.textInputPadding}
@@ -227,6 +223,7 @@ const AddProduct = ({navigation}) => {
                 </View>
               </TouchableOpacity>
             </View>
+
             <Mybutton title="Submit" customClick={addProduct} />
           </KeyboardAvoidingView>
         </ScrollView>
