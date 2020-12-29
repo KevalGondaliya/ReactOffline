@@ -12,6 +12,7 @@ import UpdateUser from './src/screens/UpdateUser';
 import ViewUser from './src/screens/ViewUser';
 import ViewAllUser from './src/screens/ViewAllUser';
 import DeleteUser from './src/screens/DeleteUser';
+import Cart from './src/screens/Cart';
 import {colors} from './src/config/constant';
 
 const Stack = createStackNavigator();
@@ -95,6 +96,20 @@ const App = () => {
           component={DeleteUser}
           options={{
             title: 'Delete User', //Set Header Title
+            headerStyle: {
+              backgroundColor: '#f12761', //Set Header color
+            },
+            headerTintColor: '#fff', //Set Header text color
+            headerTitleStyle: {
+              fontWeight: 'bold', //Set Header text style
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{
+            title: 'Cart', //Set Header Title
             headerStyle: {
               backgroundColor: '#f12761', //Set Header color
             },
