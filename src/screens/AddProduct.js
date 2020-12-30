@@ -89,39 +89,42 @@ const AddProduct = ({navigation}) => {
     if (!productName) {
       Toast.showWithGravity('Please enter product name', Toast.LONG, Toast.TOP);
       return;
-    } else if (!smallDes) {
+    }
+    if (!smallDes) {
       Toast.showWithGravity(
         'Please enter small description',
         Toast.LONG,
         Toast.TOP,
       );
       return;
-    } else if (!originalPrice) {
+    }
+    if (!originalPrice) {
       Toast.showWithGravity(
         'Please enter original price',
         Toast.LONG,
         Toast.TOP,
       );
       return;
-    } else if (!discountPrice) {
+    }
+    if (!discountPrice) {
       Toast.showWithGravity(
         'Please enter discount Price',
         Toast.LONG,
         Toast.TOP,
       );
       return;
-    } else if (!productImage) {
+    }
+    if (!productImage) {
       Toast.showWithGravity(
         'Please select prodcut image',
         Toast.LONG,
         Toast.TOP,
       );
       return;
-    } else if (!category) {
+    }
+    if (!category) {
       Toast.showWithGravity('Please select category', Toast.LONG, Toast.TOP);
       return;
-    } else {
-      Toast.showWithGravity('Please fill all field', Toast.LONG, Toast.TOP);
     }
 
     db.transaction(function (tx) {
@@ -138,17 +141,23 @@ const AddProduct = ({navigation}) => {
         (tx, results) => {
           console.log('Results', results.rowsAffected);
           if (results.rowsAffected > 0) {
-            Alert.alert(
-              'Success',
+            Toast.showWithGravity(
               'You are Registered Successfully',
-              [
-                {
-                  text: 'Ok',
-                  onPress: () => navigation.navigate('HomeScreen'),
-                },
-              ],
-              {cancelable: false},
+              Toast.LONG,
+              Toast.TOP,
             );
+            navigation.navigate('HomeScreen');
+            // Alert.alert(
+            //   'Success',
+            //   'You are Registered Successfully',
+            //   [
+            //     {
+            //       text: 'Ok',
+            //       onPress: () => navigation.navigate('HomeScreen'),
+            //     },
+            //   ],
+            //   {cancelable: false},
+            // );
           } else alert('Registration Failed');
         },
       );

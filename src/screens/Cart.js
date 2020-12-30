@@ -109,11 +109,15 @@ const HomeScreen = ({navigation}) => {
             <View style={{flexDirection: 'row'}}>
               <Text style={styles.dicPrice}>${item.discount_price}</Text>
               <Text style={styles.orgnlPrice}>${item.original_price}</Text>
+              {/* <Text style={styles.orgnlPrice}>
+                ${parseInt(item.item_counter)}
+              </Text> */}
               {/* <Text style={styles.orgnlPrice}>${item.product_id}</Text> */}
             </View>
             <View style={{flexDirection: 'row'}}>
               <View style={styles.numericInputStyle}>
                 <NumericInput
+                  initValue={parseInt(item.item_counter)}
                   value={counter}
                   onChange={(value) => setCounter(value)}
                   onLimitReached={(isMax, msg) => console.log(isMax, msg)}
@@ -162,7 +166,7 @@ const HomeScreen = ({navigation}) => {
                 <Text style={styles.yourSalePrice}>
                   $
                   {_.sumBy(flatListItems, function (o) {
-                    let sumData = parseInt(o.discount_price);
+                    let sumData = parseInt(o.discount_price * o.item_counter);
                     return sumData;
                   })}
                 </Text>

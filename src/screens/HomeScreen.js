@@ -50,7 +50,7 @@ const HomeScreen = ({navigation}) => {
           if (res.rows.length == 0) {
             txn.executeSql('DROP TABLE IF EXISTS cart_table', []);
             txn.executeSql(
-              'CREATE TABLE IF NOT EXISTS cart_table(product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name VARCHAR(20), small_des INT(10), original_price VARCHAR(50), discount_price VARCHAR(50), product_image VARCHAR(50), category VARCHAR(50))',
+              'CREATE TABLE IF NOT EXISTS cart_table(product_id INTEGER PRIMARY KEY AUTOINCREMENT, product_name VARCHAR(20), small_des INT(10), original_price VARCHAR(50), discount_price VARCHAR(50), product_image VARCHAR(50), category VARCHAR(50), item_counter VARCHAR(50))',
               [],
             );
           }
@@ -89,7 +89,7 @@ const HomeScreen = ({navigation}) => {
       console.log('test', items.product_name);
       db.transaction(function (tx) {
         tx.executeSql(
-          'INSERT INTO cart_table (product_name,small_des,original_price,discount_price,product_image,category) VALUES (?,?,?,?,?,?)',
+          'INSERT INTO cart_table (product_name,small_des,original_price,discount_price,product_image,category, item_counter) VALUES (?,?,?,?,?,?,?)',
           [
             items.product_name,
             items.small_des,
@@ -97,6 +97,7 @@ const HomeScreen = ({navigation}) => {
             items.discount_price,
             items.product_image,
             items.category,
+            counter,
           ],
           (tx, results) => {
             console.log('Results', results.rowsAffected);
@@ -143,7 +144,7 @@ const HomeScreen = ({navigation}) => {
           <View style={{flexDirection: 'row'}}>
             <View style={styles.numericInputStyle}>
               <NumericInput
-                value={counter}
+                value={item.item_counter}
                 onChange={(value) => setCounter(value)}
                 onLimitReached={(isMax, msg) => console.log(isMax, msg)}
                 totalWidth={80}
