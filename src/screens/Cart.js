@@ -114,8 +114,13 @@ const HomeScreen = ({navigation}) => {
               </Text> */}
               {/* <Text style={styles.orgnlPrice}>${item.product_id}</Text> */}
             </View>
+            <View>
+              <Text style={styles.quantityText}>
+                Quantity : {parseInt(item.item_counter)}
+              </Text>
+            </View>
             <View style={{flexDirection: 'row'}}>
-              <View style={styles.numericInputStyle}>
+              {/* <View style={styles.numericInputStyle}>
                 <NumericInput
                   initValue={parseInt(item.item_counter)}
                   value={counter}
@@ -132,7 +137,7 @@ const HomeScreen = ({navigation}) => {
                   rightButtonBackgroundColor={colors.primary}
                   leftButtonBackgroundColor={colors.primary}
                 />
-              </View>
+              </View> */}
               <TouchableOpacity onPress={() => deleteUser({item})}>
                 <View style={styles.addCartBtn}>
                   <Text style={styles.addCartText}>Delete</Text>
@@ -230,7 +235,7 @@ const styles = StyleSheet.create({
   },
   itemImg: {
     width: 130,
-    height: 130,
+    height: 150,
     margin: 10,
     borderRadius: 10,
   },
@@ -266,7 +271,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 30,
   },
   addCartBtn: {
-    marginHorizontal: 15,
+    // marginHorizontal: 15,
     marginVertical: 7,
   },
   addCartText: {
@@ -299,6 +304,11 @@ const styles = StyleSheet.create({
     // height: 130,
     marginVertical: '10%',
     borderRadius: 10,
+  },
+  quantityText: {
+    color: colors.darkGray,
+    fontSize: 16,
+    fontWeight: '500',
   },
 });
 
