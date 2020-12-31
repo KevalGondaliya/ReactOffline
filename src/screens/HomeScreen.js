@@ -134,6 +134,7 @@ const HomeScreen = ({navigation}) => {
             />
           )}
         </View>
+
         <View style={styles.detailStyle}>
           <Text style={styles.productLabel}>{item.product_name}</Text>
           <Text style={styles.productSmallDec}>{item.small_des}</Text>

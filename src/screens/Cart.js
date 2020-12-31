@@ -116,7 +116,10 @@ const HomeScreen = ({navigation}) => {
             </View>
             <View>
               <Text style={styles.quantityText}>
-                Quantity : {parseInt(item.item_counter)}
+                Quantity :{' '}
+                {parseInt(item.item_counter) > 0
+                  ? parseInt(item.item_counter)
+                  : 1}
               </Text>
             </View>
             <View style={{flexDirection: 'row'}}>
@@ -171,7 +174,10 @@ const HomeScreen = ({navigation}) => {
                 <Text style={styles.yourSalePrice}>
                   $
                   {_.sumBy(flatListItems, function (o) {
-                    let sumData = parseInt(o.discount_price * o.item_counter);
+                    let sumData = parseInt(
+                      o.discount_price *
+                        (o.item_counter > 0 ? o.item_counter : 1),
+                    );
                     return sumData;
                   })}
                 </Text>
